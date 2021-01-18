@@ -18,7 +18,7 @@ Left side of the image is created with the original Yanderify with the low bit r
 *Ignore that the face looks very weird, I took that frame intentionally so that more bit rate will be used...*
 
 ## "SSL CERTIFICATE_VERIFY_FAILED"
-If you receive this error from the exectuable, just launch `SSL Certificate fix.bat` as admin. This error happens because Yanderify is trying to download a file for one module without success and this bat file just moves that file from one directory to the proper location in order to make Yanderify work.
+If you receive this error from the executable, just launch `SSL Certificate fix.bat` as admin. This error happens because Yanderify is trying to download a file for one module without success and this bat file just moves that file from one directory to the proper location in order to make Yanderify work.
 
 ## Building
 Building was rather tricky. **PyInstaller 4.1** on **Python 3.7.2** has been used for building. I've made a bat file for installing the requirements and one for compiling Yanderify. Remember to edit Yanderify.spec and change the "pathex" location. Compiling has to be done in the Yanderify folder with all the files. After compiling I replaced the executable from the dist folder into the Yanderify folder because the content inside the dist folder included a lot of duplicated dll files and made the project more than twice as big as before.
