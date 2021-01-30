@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['Yanderify.py', 'fomm\\demo.py'],
-             pathex=['C:\\Users\\Anima\\Desktop\\CRF1\\Yanderify'],
+             pathex=['C:\\Users\\Anima\\Desktop\\CRF0\\Yanderify'],
              binaries=[],
              datas=[('fomm\\config\\vox-256.yaml', '.')],
              hiddenimports=[],
