@@ -233,7 +233,7 @@ def worker_thread(vid0n, img0n, vid1n, cpu, relative, fix_gamma):
             cmd = [os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ffmpeg.exe')]
             cmd.extend(shlex.split('-y -hide_banner -loglevel warning -i tmp.mp4 -i'))
             cmd.append(vid0n)
-            cmd.extend(shlex.split('-map 0:v -map 1:a -movflags faststart -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 1'))
+            cmd.extend(shlex.split('-map 0:v -map 1:a -movflags faststart -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 0'))
             if ffmpeg_flags:
                 cmd.extend(ffmpeg_flags)
             cmd.append(vid1n)
@@ -247,11 +247,9 @@ def worker_thread(vid0n, img0n, vid1n, cpu, relative, fix_gamma):
             e.output
         )
         trace('ffmpeg', [vid0n, img0n, vid1n], aux=msg)
-        q.put('FFmpeg has crashed!')
-        q.put('Usually this means the deepfake process worked, but re-encoding failed.')
+        q.put('FFmpeg has crashed!\nUsually this means the deepfake process worked, but re-encoding failed.')
         shutil.copy('tmp.mp4', vid1n)
-        q.put('You can attempt to salvage your progress by re-muxing audio streams manually.')
-        q.put('This may also happen if your input video contains no audio; if this is the case, the file should be intact.')
+        q.put('You can attempt to salvage your progress by re-muxing audio streams manually.\nThis may also happen if your input video contains no audio; if this is the case,the file should be intact.')
         raise e
     except Exception as e:
         msg = 'cpu={}'.format(cpu)
@@ -317,7 +315,7 @@ class Yanderify(Frame):
         self.progress_bar.grid(row=1, column=0, columnspan=4)
         st = scrolledtext.ScrolledText(master, state=DISABLED)
         st.grid(row=2, column=0, columnspan=5, rowspan=7)
-        write('Started Yanderify 4.0.3 bit rate fix. (CRF 1)\nDisclaimer: CPU mode on low-end computers or most laptops generally will cause\nthe system to lock-up.\nWe are not liable if you freeze your PC by refusing to listen to this advice.\nIf the gamma looks weird in the output, consider clicking on "Toggle advanced\nsettings" and activate "Fix gamma".\n\nOriginal First Order Motion Model repo: https://github.com/AliaksandrSiarohin/first-order-model\nYanderify repo: https://github.com/dunnousername/yanderifier\nYanderify bit rate fix repo: https://github.com/Animan8000/Yanderify-bit-rate-fix\n')
+        write('Started Yanderify 4.0.3 bit rate fix. (CRF 0)\nDisclaimer: CPU mode on low-end computers or most laptops generally will cause\nthe system to lock-up.\nWe are not liable if you freeze your PC by refusing to listen to this advice.\nIf the gamma looks weird in the output, consider clicking on "Toggle advanced\nsettings" and activate "Fix gamma".\n\nOriginal First Order Motion Model repo: https://github.com/AliaksandrSiarohin/first-order-model\nYanderify repo: https://github.com/dunnousername/yanderifier\nYanderify bit rate fix repo: https://github.com/Animan8000/Yanderify-bit-rate-fix\n')
         adv_toggle = Button(master, text='Toggle advanced settings', command=adv_toggle_cmd)
         adv_toggle.grid(row=9, column=0, columnspan=5)
         self.adv_panel = Frame(master)
