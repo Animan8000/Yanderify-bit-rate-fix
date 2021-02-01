@@ -27,3 +27,6 @@ Building was rather tricky. **PyInstaller 4.1** on **Python 3.7.2** has been use
 
 ## When uploading to YouTube
 It's recommended to use a minimum resolution of **1080x1080** for the output to avoid YouTube's processing messing the bit rate up too much, because videos with a low resolution get processed with a low bit rate as well unfortunately. This can be achieved easily if the image input is in 1080x1080.
+
+## Official Yanderify Discord Server
+[**Here**](https://discord.gg/KmFJNJYaA3).
